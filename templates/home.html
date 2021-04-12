@@ -4,6 +4,75 @@
 
 {% block content %}
 
-<h1>NOM NOM NOM!</h1>
+<section id="boggle">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm"></div>
+
+      <div class="col-lg">
+        <h1 class="p-3 m-1 d-flex justify-content-center">
+          <i>Game Time!</i>
+        </h1>
+        <form class="word-form">
+          <div class="form-group row">
+            <div class="col-sm-8">
+              <input type="guess" class="form-control word" id="guess"
+                placeholder="Enter guess here">
+            </div>
+            <a class="btn btn-outline-danger" id="submisssionBtn"
+              role="button">Submit</a>
+        </div>
+        </form>
+          <table class="table table-bordered table-dark p-2 m-1 ">
+            <thead>
+              <tr class="text-danger text-center">
+                <th scope="col">I</th>
+                <th scope="col">II</th>
+                <th scope="col">III</th>
+                <th scope="col">IV</th>
+                <th scope="col">V</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for row in board %}
+              <tr class="bg-light">
+                {% for item in row %}
+                <td class="text-danger text-center">{{ item }}</td>
+                {% endfor %}
+              </tr>
+              {% endfor %}
+            </tbody>
+        </table>
+      </div>
+      <div class="col-sm"></div>
+    </div>
+  </div>
+</section>
+
+<p>High Score: 
+  <b>{{ highscore }}</b> 
+  in {{ nplays }} plays
+</p>
+
+<p>
+  Score: <b class="score">0</b>
+  Seconds Left: <b class="timer"></b>
+</p>
+
+<p class="msg">
+        <!-- our JS will put messages here dynamically -->
+</p>
+
+<ul class="words">
+        <!-- our JS will words here as they score -->   
+</ul>
+
+
+<script src="http://unpkg.com/jquery"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="/static/js/boggle.js"></script>
+<script>
+  let game = new BoggleGame("boggle", 60);
+</script>
 
 {% endblock %}
